@@ -2089,15 +2089,15 @@ class FiberSecMesh:
         # --------------------------------------------------
         if triangles is not None and vals_cell is not None and norm is not None:
             triang = mtri.Triangulation(self.fiber_points[:, 0], self.fiber_points[:, 1], triangles)
-            ax.tripcolor(triang, facecolors=vals_cell, norm=norm, cmap=cmap_obj)
-            ax.triplot(triang, linewidth=0.2, color="k", alpha=0.5)
+            ax.tripcolor(triang, facecolors=vals_cell, norm=norm, cmap=cmap_obj, zorder=10)
+            ax.triplot(triang, linewidth=0.2, color="k", alpha=0.5, zorder=10)
 
         # --------------------------------------------------
         # 5. plot rebars
         # --------------------------------------------------
         if centers is not None and radii is not None and vals_rebar is not None:
             for (cx, cy), r, v in zip(centers, radii, vals_rebar):
-                ax.add_patch(plt.Circle((cx, cy), r, color=cmap_obj(norm(v)), ec="k", linewidth=0.5))
+                ax.add_patch(plt.Circle((cx, cy), r, color=cmap_obj(norm(v)), ec="k", linewidth=0.5, zorder=10))
 
         # --------------------------------------------------
         # 6. colorbar
